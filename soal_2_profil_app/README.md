@@ -8,7 +8,7 @@
 * **Institusi:** Global Institute of Technology and Business
 
 ## Link Video Demo
-* **Link YouTube:** [Tonton Video Demo Aplikasi Profil Fajar](TEMPEL_LINK_YOUTUBE_KAMU_DI_SINI)
+* **Link YouTube:** [Tonton Video Demo Aplikasi Profil Fajar](https://youtu.be/QTynoJl0lo8?si=e0AHbn7lm8asQ7CC)
 
 ## Screenshot Aplikasi
 

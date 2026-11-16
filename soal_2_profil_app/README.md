@@ -1,32 +1,42 @@
-# UTS Pemrograman Mobile Lanjut - Soal 2
+# UTS Pemrograman Mobile Lanjutan - Aplikasi Profil Mahasiswa
 
-Aplikasi Profil Mahasiswa berbasis Flutter untuk memenuhi tugas Ujian Tengah Semester.
+## Identitas Mahasiswa
+* **Nama:** Fajar Hikmayatul Islami
+* **NIM:** 1124160221
+* **Kelas:** TI - Semester 5
+* **Program Studi:** Teknik Informatika
+* **Institusi:** Global Institute of Technology and Business
 
-- **Nama:** Fajar
-- **NIM:** 1124160221
-- **Folder Proyek:** `soal2-profil-app`
+## Link Video Demo
+* **Link YouTube:** [Tonton Video Demo Aplikasi Profil Fajar](TEMPEL_LINK_YOUTUBE_KAMU_DI_SINI)
 
-## Fitur Aplikasi
-1. Halaman Login dengan validasi email/password dan indikator loading
-2. Halaman Profil Utama dengan foto aset lokal, `Drawer`, dan `FloatingActionButton`
-3. Halaman Edit Profil dengan validasi input dan pembaruan data real-time (`setState`)
-4. Halaman Tentang Saya menggunakan `ListView`
-5. Dukungan tema Terang (Light Mode) dan Gelap (Dark Mode)
+## Screenshot Aplikasi
 
-# soal2_profil_app
+| Halaman Login | Halaman Profil | Menu Drawer | Halaman Tentang Saya | Halaman Edit Profil |
+| :---: | :---: | :---: | :---: | :---: |
+| ![Login](assets/ss1_login.png) | ![Profil](assets/ss2_profil.png) | ![Drawer](assets/ss3_drawer.png) | ![Tentang](assets/ss4_tentang.png) | ![Edit](assets/ss5_edit.png) |
 
-A new Flutter project.
+## Penjelasan & Interpretasi Arsitektur Aplikasi
 
-## Getting Started
+Aplikasi ini dibangun menggunakan framework **Flutter** dengan pendekatan arsitektur modular yang memisahkan antara model data (`models/`), antarmuka halaman (`screens/`), dan komponen antarmuka yang dapat digunakan ulang (`widgets/`).
 
-This project is a starting point for a Flutter application.
+### 1. Halaman Login (`login_page.dart`)
+* **Validasi Input Terstruktur:** Menggunakan `Form` dan `GlobalKey<FormState>` untuk memvalidasi input *Username (NIM)* agar wajib diisi dan berformat angka, serta validasi *Password* minimal 6 karakter sebelum pengguna diizinkan masuk.
+* **UX & Keamanan Visual:** Dilengkapi fitur sembunyikan/tampilkan kata sandi (`obscureText`) serta indikator proses memuat (`CircularProgressIndicator`) selama 1 detik sebelum berpindah halaman menggunakan `Navigator.pushReplacementNamed(context, '/profile')` agar pengguna tidak kembali ke halaman login saat menekan tombol kembali.
 
-A few resources to get you started if this is your first Flutter project:
+### 2. Halaman Profil & Navigasi Drawer (`profile_page.dart`)
+* **Manajemen State Lokal (`StatefulWidget`):** Menyimpan objek data mahasiswa menggunakan model `Profile` dan memperbarui tampilan secara dinamis melalui fungsi `setState()` setiap kali terdapat perubahan data dari halaman edit.
+* **Komponen Reusable (`InfoTile`):** Informasi kontak seperti Email, Nomor HP, dan akun GitHub ditampilkan menggunakan *custom widget* `InfoTile` agar struktur kode lebih bersih, konsisten, dan mudah dirawat.
+* **Navigasi & Pengaturan Tema:** Menyediakan menu samping (`Drawer`) untuk berpindah antarhalaman (`Profil Saya`, `Tentang Saya`, `Keluar`) serta fitur sakelar **Mode Gelap (Dark Mode)** yang terhubung langsung ke tema utama aplikasi di `main.dart`.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+### 3. Halaman Edit Profil (`edit_profile_page.dart`)
+* **Pengelolaan Input Form:** Menggunakan `TextEditingController` yang diinisialisasi pada `initState()` dengan data profil saat ini sehingga pengguna dapat langsung menyunting bagian yang diinginkan tanpa mengetik ulang seluruh data.
+* **Pengiriman Data Antarhalaman:** Setelah validasi `GlobalKey<FormState>` terpenuhi, objek `Profile` baru dikirim kembali ke `ProfilePage` menggunakan `Navigator.pop(context, dataBaru)`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 4. Halaman Tentang Saya (`about_page.dart`)
+* **Tata Letak Gulir (`ListView`):** Menyusun informasi riwayat pendidikan, keahlian teknis, lencana hobi (`Wrap` & `Chip`), serta deskripsi aplikasi dalam daftar yang responsif pada berbagai ukuran layar perangkat Android.
+
+## Cara Menjalankan Aplikasi
+1. Clone repository ini ke komputer lokal:
+   ```bash
+   git clone [https://github.com/fajar-islamic/uts-pml-1124160221.git](https://github.com/fajar-islamic/uts-pml-1124160221.git)
